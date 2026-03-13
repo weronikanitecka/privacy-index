@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "source": "CMS GDPR Enforcement Tracker (enforcementtracker.com), EDPB, national DPA publications",
+    "last_updated": "2025-03-01",
+    "note": "Contains publicly documented GDPR fines only. Not exhaustive — fines not made public are excluded.",
+    "total_tracked": 2245
+  },
+  "fines": {
+    "Facebook.com": [
+      { "amount": 1200000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2023, "article": "Art. 46", "summary": "Unlawful transfer of EU user data to the United States without adequate safeguards.", "url": "https://www.enforcementtracker.com/?id=1936" },
+      { "amount": 265000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2022, "article": "Art. 33, 34", "summary": "Data scraping breach notification failures. Over 533 million users' data exposed.", "url": "https://www.enforcementtracker.com/" },
+      { "amount": 17000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2022, "article": "Art. 5, 24, 25, 32", "summary": "Multiple data breaches between June 2018 and December 2019. Insufficient technical measures.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Instagram.com": [
+      { "amount": 405000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2022, "article": "Art. 5, 6, 9, 12, 13", "summary": "Processing of children's personal data, including public display of phone numbers and email addresses of minors.", "url": "https://www.enforcementtracker.com/" },
+      { "amount": 390000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2023, "article": "Art. 6, 12, 13", "summary": "Unlawful use of 'legitimate interests' as legal basis for behavioural advertising.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "TikTok.com": [
+      { "amount": 530000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2025, "article": "Art. 44, 46", "summary": "Unlawful transfer of European user data to China. Failure to meet transparency requirements.", "url": "https://www.enforcementtracker.com/" },
+      { "amount": 345000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2023, "article": "Art. 5, 6, 12, 13, 24, 25, 31", "summary": "Failure to protect children's data. Default public settings for minors, insufficient age verification.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "LinkedIn.com": [
+      { "amount": 310000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2024, "article": "Art. 5, 6, 13", "summary": "Unlawful processing of personal data for behavioural advertising. Failure to provide transparent information about legal bases.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Google.com": [
+      { "amount": 150000000, "currency": "EUR", "dpa": "CNIL", "country": "France", "year": 2022, "article": "Art. 7, 82 ePrivacy", "summary": "Making it harder for users to refuse cookies than to accept them. Dark patterns in consent interface.", "url": "https://www.enforcementtracker.com/" },
+      { "amount": 90000000, "currency": "EUR", "dpa": "CNIL", "country": "France", "year": 2022, "article": "Art. 7, 82 ePrivacy", "summary": "YouTube cookie consent failures — refusing cookies made more difficult than accepting.", "url": "https://www.enforcementtracker.com/" },
+      { "amount": 50000000, "currency": "EUR", "dpa": "CNIL", "country": "France", "year": 2019, "article": "Art. 5, 6, 13", "summary": "Lack of transparent information and valid consent for personalised advertising on Android devices.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "YouTube.com": [
+      { "amount": 90000000, "currency": "EUR", "dpa": "CNIL", "country": "France", "year": 2022, "article": "Art. 7, 82 ePrivacy", "summary": "Cookie consent failures — refusing cookies made more difficult than accepting.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "WhatsApp.com": [
+      { "amount": 225000000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2021, "article": "Art. 12, 13, 14", "summary": "Lack of transparency about data processing, including data sharing with Facebook. Insufficient privacy notice.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Amazon (EU domains)": [
+      { "amount": 746000000, "currency": "EUR", "dpa": "CNPD", "country": "Luxembourg", "year": 2021, "article": "Art. 5, 6, 7", "summary": "Largest GDPR fine at the time. Unlawful processing for advertising purposes. Consent mechanisms deemed insufficient.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Twitter/X.com": [
+      { "amount": 450000, "currency": "EUR", "dpa": "Irish DPC", "country": "Ireland", "year": 2022, "article": "Art. 33", "summary": "Failure to notify the DPA of a personal data breach within 72 hours.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Uber.com": [
+      { "amount": 290000000, "currency": "EUR", "dpa": "AP", "country": "Netherlands", "year": 2024, "article": "Art. 44, 46", "summary": "Unlawful transfer of European drivers' personal data to the United States without adequate safeguards.", "url": "https://www.enforcementtracker.com/" },
+      { "amount": 600000, "currency": "EUR", "dpa": "AP", "country": "Netherlands", "year": 2018, "article": "Art. 33", "summary": "Failure to report a personal data breach within 72 hours. 57 million records exposed.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Spotify.com": [
+      { "amount": 5000000, "currency": "EUR", "dpa": "IMY", "country": "Sweden", "year": 2023, "article": "Art. 15", "summary": "Failure to provide users with clear and comprehensible information when exercising right of access.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Airbnb.com": [
+      { "amount": 720000, "currency": "EUR", "dpa": "Garante", "country": "Italy", "year": 2021, "article": "Art. 5, 6, 13", "summary": "Insufficient transparency about data processing for advertising purposes and third-party sharing.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Booking.com": [
+      { "amount": 475000, "currency": "EUR", "dpa": "AP", "country": "Netherlands", "year": 2020, "article": "Art. 33", "summary": "Failure to report a personal data breach (access by fraudsters to hotel partners) within 72 hours.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Deliveroo.co.uk": [
+      { "amount": 50000, "currency": "EUR", "dpa": "CNIL", "country": "France", "year": 2021, "article": "Art. 13, 14", "summary": "Insufficient information provided to delivery workers about processing of their personal data.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Easyjet.com": [
+      { "amount": 0, "currency": "EUR", "dpa": "ICO", "country": "United Kingdom", "year": 2022, "article": "Art. 32", "summary": "ICO investigation into 2020 data breach affecting 9 million customers. No formal fine issued — regulatory action taken.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Snapchat.com": [
+      { "amount": 8500000, "currency": "GBP", "dpa": "ICO", "country": "United Kingdom", "year": 2025, "article": "Art. 35, 36", "summary": "Failure to adequately assess privacy risks of its 'My AI' feature to children.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Discord.com": [
+      { "amount": 800000, "currency": "EUR", "dpa": "CNIL", "country": "France", "year": 2023, "article": "Art. 5, 13, 17, 32", "summary": "Retention of personal data beyond necessary periods. Inadequate information about data retention. Security failures.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Bumble.com": [
+      { "amount": 1400000, "currency": "EUR", "dpa": "HmbBfDI", "country": "Germany", "year": 2023, "article": "Art. 5, 25", "summary": "Excessive data collection and insufficient data minimisation in profile creation. Privacy by design failures.", "url": "https://www.enforcementtracker.com/" }
+    ],
+    "Badoo.com": [
+      { "amount": 1400000, "currency": "EUR", "dpa": "HmbBfDI", "country": "Germany", "year": 2023, "article": "Art. 5, 25", "summary": "Excessive data collection and insufficient data minimisation — same enforcement action as Bumble (same parent company).", "url": "https://www.enforcementtracker.com/" }
+    ]
+  }
+}

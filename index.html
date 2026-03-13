@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guardatum — Privacy Policy Risk Index</title>
+<meta name="description" content="The first AI-powered, enforcement-informed privacy policy risk index for Europe's most-visited websites. Scored against 7 GDPR principles.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%236B0F38'/><path d='M6 16 Q16 8 26 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'/><path d='M6 16 Q16 24 26 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'/><circle cx='16' cy='16' r='4' fill='none' stroke='white' stroke-width='1.8'/><circle cx='16' cy='16' r='1.6' fill='white'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --burg:#6B0F38;--ink:#0F0A0D;--warm:#F7F3F0;--slate:#4A5568;--mid:#2D1B24;
+  --safe-c:#166534;--safe-bg:#DCFCE7;--safe-b:#86EFAC;
+  --rev-c:#92400E;--rev-bg:#FEF3C7;--rev-b:#FCD34D;
+  --risk-c:#991B1B;--risk-bg:#FEE2E2;--risk-b:#FCA5A5;
+  --fine-c:#7C2D12;--fine-bg:#FFF7ED;--fine-b:#FED7AA;
+  --border:#E5E7EB;--card:#FFFFFF;--page:#F7F3F0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--page);color:var(--ink);font-size:15px;line-height:1.6}
+
+/* HEADER */
+header{background:var(--ink);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--burg)}
+.hdr{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-name{font-size:16px;font-weight:300;letter-spacing:4px;color:var(--warm)}
+.logo-tag{font-size:8px;letter-spacing:3px;color:var(--burg);text-transform:uppercase;margin-top:2px}
+.hdr-meta{display:flex;align-items:center;gap:16px}
+.hdr-pill{background:rgba(107,15,56,.3);border:1px solid rgba(107,15,56,.5);color:var(--burg);font-size:10px;letter-spacing:2px;padding:3px 10px;border-radius:20px;font-family:'DM Mono',monospace}
+.hdr-link{font-size:12px;color:rgba(247,243,240,.4);text-decoration:none;letter-spacing:1px}
+.hdr-link:hover{color:var(--burg)}
+
+/* HERO */
+.hero{background:var(--burg);padding:40px 20px 32px;overflow:hidden;position:relative}
+.hero::after{content:'';position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:360px;height:360px;border-radius:50%;border:1px solid rgba(247,243,240,.05);pointer-events:none}
+.hero-inner{max-width:1280px;margin:0 auto;position:relative}
+.hero-eye{opacity:.15;position:absolute;right:0;top:-20px}
+.hero-kicker{font-size:10px;letter-spacing:4px;color:rgba(247,243,240,.45);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:12px}
+.hero h1{font-size:clamp(26px,4vw,40px);font-weight:300;color:var(--warm);line-height:1.2;margin-bottom:10px;max-width:600px}
+.hero-sub{font-size:14px;color:rgba(247,243,240,.6);max-width:520px;line-height:1.7;margin-bottom:24px}
+.stats{display:flex;flex-wrap:wrap;gap:2px}
+.stat{background:rgba(247,243,240,.07);border:1px solid rgba(247,243,240,.1);padding:12px 20px;min-width:100px}
+.stat-n{font-size:26px;font-weight:200;color:var(--warm);line-height:1;font-family:'DM Mono',monospace}
+.stat-l{font-size:9px;letter-spacing:2px;color:rgba(247,243,240,.4);text-transform:uppercase;margin-top:3px}
+.stat.safe-s{border-left:3px solid #86EFAC}.stat.rev-s{border-left:3px solid #FCD34D}.stat.risk-s{border-left:3px solid #FCA5A5}.stat.fine-s{border-left:3px solid #FED7AA}
+
+/* TABS */
+.tabs-wrap{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:90}
+.tabs-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:0}
+.tab{padding:14px 20px;font-size:13px;font-weight:400;color:var(--slate);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;user-select:none;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--burg);border-bottom-color:var(--burg);font-weight:500}
+.tab-count{font-size:10px;background:var(--fine-bg);color:var(--fine-c);border:1px solid var(--fine-b);padding:1px 6px;border-radius:10px;margin-left:6px;font-family:'DM Mono',monospace}
+
+/* CONTROLS */
+.controls{background:var(--warm);border-bottom:1px solid var(--border);padding:12px 20px}
+.ctrl-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search-w{position:relative;flex:1;min-width:180px}
+.search-w svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.4}
+input[type=search]{width:100%;padding:8px 10px 8px 34px;border:1px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none}
+input[type=search]:focus{border-color:var(--burg)}
+input[type=search]::placeholder{color:var(--slate);opacity:.5}
+select{padding:8px 28px 8px 10px;border:1px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234A5568' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+select:focus{border-color:var(--burg)}
+.cnt{font-size:11px;color:var(--slate);font-family:'DM Mono',monospace;margin-left:auto}
+
+/* MAIN */
+main{max-width:1280px;margin:0 auto;padding:20px}
+
+/* SECTOR HEADER */
+.sec-hdr{display:flex;align-items:center;gap:10px;margin:28px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.sec-hdr:first-child{margin-top:0}
+.sec-name{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--burg)}
+.sec-avg{font-size:11px;font-family:'DM Mono',monospace;color:var(--slate)}
+.sec-line{flex:1;height:1px;background:var(--border)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.card:hover{border-color:#D4A0B0}
+.card.has-fine{border-left:3px solid #FED7AA}
+.card-top{padding:14px 14px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.c-rank{font-size:10px;letter-spacing:2px;color:var(--slate);font-family:'DM Mono',monospace;margin-bottom:3px}
+.c-name{font-size:14px;font-weight:500;color:var(--ink)}
+.c-cat{font-size:11px;color:var(--slate);margin-top:2px}
+.c-score{text-align:right;flex-shrink:0}
+.score-n{font-size:24px;font-weight:200;line-height:1;font-family:'DM Mono',monospace}
+.score-d{font-size:10px;color:var(--slate)}
+.badge{display:inline-flex;align-items:center;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:500;letter-spacing:.5px;margin-top:3px}
+.badge.safe{background:var(--safe-bg);color:var(--safe-c);border:1px solid var(--safe-b)}
+.badge.review{background:var(--rev-bg);color:var(--rev-c);border:1px solid var(--rev-b)}
+.badge.risk{background:var(--risk-bg);color:var(--risk-c);border:1px solid var(--risk-b)}
+.badge.unknown{background:#F1EFE8;color:var(--slate);border:1px solid #D3D1C7}
+.fine-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;padding:2px 7px;border-radius:4px;background:var(--fine-bg);color:var(--fine-c);border:1px solid var(--fine-b);margin-top:3px;font-weight:500}
+.card-bars{padding:0 14px 12px}
+.bar-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.bar-lbl{font-size:9px;color:var(--slate);width:104px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-trk{flex:1;height:3px;background:#F1EFE8;border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px}
+.bar-v{font-size:9px;font-family:'DM Mono',monospace;color:var(--slate);width:20px;text-align:right}
+
+/* EXPAND PANEL */
+.expand{background:var(--ink);padding:16px;display:none}
+.expand.open{display:block}
+.exp-section{margin-bottom:14px}
+.exp-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--burg);margin-bottom:10px}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.exp-item{background:rgba(247,243,240,.05);padding:8px 10px;border-radius:4px}
+.exp-p{font-size:9px;color:rgba(247,243,240,.4);margin-bottom:3px;letter-spacing:.3px}
+.exp-bar-trk{height:5px;background:rgba(247,243,240,.1);border-radius:3px;margin-bottom:4px}
+.exp-bar-fill{height:100%;border-radius:3px}
+.exp-val{font-size:14px;font-weight:300;font-family:'DM Mono',monospace}
+
+/* FINE RECORDS */
+.fine-list{margin-top:10px}
+.fine-item{background:rgba(254,215,170,.08);border:1px solid rgba(254,215,170,.2);border-radius:4px;padding:10px 12px;margin-bottom:6px}
+.fine-item:last-child{margin-bottom:0}
+.fine-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.fine-amount{font-size:15px;font-weight:500;color:#FED7AA;font-family:'DM Mono',monospace}
+.fine-meta{font-size:10px;color:rgba(247,243,240,.4);letter-spacing:.5px}
+.fine-summary{font-size:11px;color:rgba(247,243,240,.55);line-height:1.55}
+.fine-link{font-size:10px;color:var(--burg);text-decoration:none;margin-top:4px;display:inline-block}
+.fine-link:hover{text-decoration:underline}
+
+/* ENFORCEMENT TAB VIEW */
+.enf-list{display:flex;flex-direction:column;gap:10px}
+.enf-card{background:var(--card);border:1px solid var(--border);border-left:3px solid #FED7AA;border-radius:8px;padding:16px}
+.enf-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.enf-company{font-size:15px;font-weight:500;color:var(--ink)}
+.enf-cat{font-size:11px;color:var(--slate)}
+.enf-total{text-align:right}
+.enf-total-n{font-size:20px;font-weight:300;color:var(--fine-c);font-family:'DM Mono',monospace}
+.enf-total-l{font-size:9px;color:var(--slate);letter-spacing:1px;text-transform:uppercase}
+.enf-fines{display:flex;flex-direction:column;gap:8px}
+.enf-fine{background:var(--fine-bg);border:1px solid var(--fine-b);border-radius:6px;padding:10px 12px}
+.enf-fine-top{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+.enf-fine-amt{font-size:15px;font-weight:500;color:var(--fine-c);font-family:'DM Mono',monospace}
+.enf-fine-meta{font-size:11px;color:var(--slate)}
+.enf-fine-sum{font-size:12px;color:var(--ink);line-height:1.5}
+.enf-fine-ref{font-size:10px;color:var(--burg);text-decoration:none}
+
+/* EMPTY */
+#no-res{display:none;text-align:center;padding:60px 20px;color:var(--slate)}
+.empty-t{font-size:18px;font-weight:300;margin-bottom:6px}
+
+/* FOOTER */
+footer{background:var(--ink);padding:32px 20px;margin-top:48px}
+.ftr{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start}
+.ftr-brand{font-size:16px;font-weight:300;letter-spacing:4px;color:var(--warm);margin-bottom:4px}
+.ftr-note{font-size:11px;color:rgba(247,243,240,.3);line-height:1.6;max-width:500px}
+.ftr-link{color:var(--burg);text-decoration:none}
+.ftr-badges{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.ftr-badge{font-size:9px;letter-spacing:2px;color:rgba(247,243,240,.3);text-transform:uppercase;font-family:'DM Mono',monospace}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="#">
+      <svg width="32" height="18" viewBox="-16 -9 32 18" overflow="visible">
+        <path d="M-16 0 Q0-12 16 0" fill="none" stroke="#6B0F38" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M-16 0 Q0 12 16 0" fill="none" stroke="#6B0F38" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="5.5" fill="none" stroke="#6B0F38" stroke-width="1.4"/>
+        <circle cx="0" cy="0" r="2.2" fill="#6B0F38"/>
+      </svg>
+      <div>
+        <div class="logo-name">guardatum</div>
+        <div class="logo-tag">Privacy Intelligence</div>
+      </div>
+    </a>
+    <div class="hdr-meta">
+      <span class="hdr-pill">Edition 1 · 2025</span>
+      <a class="hdr-link" href="https://guardatum.org" target="_blank">guardatum.org ↗</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Europe's most-visited websites — GDPR compliance scored</p>
+    <h1>Privacy Policy Risk Index</h1>
+    <p class="hero-sub">We read 98 privacy policies so you don't have to. Scored against 7 GDPR principles and cross-referenced with DPA enforcement history across the EU.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs-inner">
+    <div class="tab active" onclick="setTab('index')" id="tab-index">Policy Scores</div>
+    <div class="tab" onclick="setTab('enforcement')" id="tab-enforcement">DPA Enforcement <span class="tab-count" id="fine-count">19</span></div>
+    <div class="tab" onclick="setTab('methodology')" id="tab-methodology">Methodology</div>
+  </div>
+</div>
+
+<!-- INDEX TAB -->
+<div id="view-index">
+  <div class="controls">
+    <div class="ctrl-inner">
+      <div class="search-w">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="#4A5568" stroke-width="1.4"/><path d="M9.5 9.5l3 3" stroke="#4A5568" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input type="search" id="q" placeholder="Search companies or sectors…">
+      </div>
+      <select id="f-sec"><option value="">All sectors</option></select>
+      <select id="f-risk"><option value="">All risk levels</option><option value="safe">Safe</option><option value="review">Review required</option><option value="risk">High risk</option></select>
+      <select id="f-fine"><option value="">All companies</option><option value="fined">Fined only</option></select>
+      <select id="f-sort"><option value="rank">Traffic rank</option><option value="sd">Score ↓</option><option value="sa">Score ↑</option><option value="name">Name A–Z</option></select>
+      <span class="cnt" id="cnt">98 websites</span>
+    </div>
+  </div>
+  <main id="main"></main>
+  <div id="no-res"><p class="empty-t">No results</p><p>Try adjusting your search or filters</p></div>
+</div>
+
+<!-- ENFORCEMENT TAB -->
+<div id="view-enforcement" style="display:none">
+  <main>
+    <div style="padding:20px 0 12px">
+      <p style="font-size:13px;color:var(--slate);max-width:680px;line-height:1.7">The following companies in this index have received documented GDPR fines from European Data Protection Authorities. Data sourced from the CMS GDPR Enforcement Tracker (enforcementtracker.com). Fines not made public are excluded.</p>
+    </div>
+    <div class="enf-list" id="enf-list"></div>
+  </main>
+</div>
+
+<!-- METHODOLOGY TAB -->
+<div id="view-methodology" style="display:none">
+  <main style="max-width:720px">
+    <div style="padding:24px 0">
+      <h2 style="font-size:20px;font-weight:400;color:var(--burg);margin-bottom:16px">How We Score</h2>
+      <p style="font-size:14px;color:var(--slate);line-height:1.75;margin-bottom:20px">Each privacy policy is evaluated against the seven core principles of the GDPR (Regulation EU 2016/679). Each principle is scored on a 0–10 scale. The composite score is the arithmetic mean of all available principle scores.</p>
+
+      <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:28px">
+        <thead><tr style="background:var(--burg)">
+          <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:500;border-radius:0">GDPR Principle</th>
+          <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:500">What we evaluate</th>
+        </tr></thead>
+        <tbody id="method-table"></tbody>
+      </table>
+
+      <h2 style="font-size:20px;font-weight:400;color:var(--burg);margin-bottom:16px;margin-top:28px">Risk Classification</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px">
+        <div style="background:var(--safe-bg);border:1px solid var(--safe-b);border-radius:6px;padding:12px 16px"><strong style="color:var(--safe-c)">✓ Safe — 7.5 to 10.0</strong><p style="font-size:13px;color:var(--slate);margin-top:4px">Policy demonstrates strong GDPR compliance across all seven principles. Users can engage with reasonable confidence.</p></div>
+        <div style="background:var(--rev-bg);border:1px solid var(--rev-b);border-radius:6px;padding:12px 16px"><strong style="color:var(--rev-c)">⚠ Review Required — 6.0 to 7.4</strong><p style="font-size:13px;color:var(--slate);margin-top:4px">Policy is partially compliant but contains notable gaps. Users should review specific data categories before sharing sensitive information.</p></div>
+        <div style="background:var(--risk-bg);border:1px solid var(--risk-b);border-radius:6px;padding:12px 16px"><strong style="color:var(--risk-c)">✗ High Risk — below 6.0</strong><p style="font-size:13px;color:var(--slate);margin-top:4px">Policy shows significant deficiencies in one or more core GDPR principles. Users face material risk of their data being used in ways they did not meaningfully consent to.</p></div>
+      </div>
+
+      <h2 style="font-size:20px;font-weight:400;color:var(--burg);margin-bottom:16px;margin-top:28px">The DPA Enforcement Layer</h2>
+      <p style="font-size:14px;color:var(--slate);line-height:1.75;margin-bottom:12px">From Edition 2 onwards, each score will be cross-referenced with the company's documented regulatory enforcement history. A company may write a compliant policy while practising differently — DPA fines are the strongest available signal of that gap.</p>
+      <p style="font-size:14px;color:var(--slate);line-height:1.75;margin-bottom:20px">Enforcement data is sourced from the CMS GDPR Enforcement Tracker, national DPA publications (CNIL, ICO, UODO, Garante), and EDPB public registers. Only publicly documented fines are included.</p>
+
+      <h2 style="font-size:20px;font-weight:400;color:var(--burg);margin-bottom:16px;margin-top:28px">Limitations</h2>
+      <p style="font-size:14px;color:var(--slate);line-height:1.75">This analysis evaluates privacy policies as written documents. It does not assess actual company behaviour, technical implementation of data practices, or undisclosed data flows. Scores are AI-assisted analyses using Guardatum's GDPR evaluation framework and should not be construed as legal advice.</p>
+
+      <div style="margin-top:28px;padding:16px;background:var(--burg);border-radius:8px">
+        <p style="font-size:13px;color:rgba(247,243,240,.8);line-height:1.65">Guardatum's data asset is intelligence about <strong style="color:var(--warm)">companies</strong>, not about users. This is the ethical foundation of the business model. All enforcement data used in this index is publicly available and cited to its source.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="ftr">
+    <div>
+      <div class="ftr-brand">guardatum</div>
+      <p class="ftr-note">This index scores privacy policies as written documents against GDPR principles and cross-references with public DPA enforcement records. It does not constitute legal advice. For media, partnership, or regulatory enquiries: <a class="ftr-link" href="mailto:weronika@guardatum.org">weronika@guardatum.org</a> &nbsp;·&nbsp; <a class="ftr-link" href="https://guardatum.org">guardatum.org</a></p>
+    </div>
+    <div class="ftr-badges">
+      <span class="ftr-badge">Edition 1 · March 2025</span>
+      <span class="ftr-badge">98 websites analysed</span>
+      <span class="ftr-badge">DPA data: enforcementtracker.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const PS=['Lawfulness & Transparency','Purpose Limitation','Data Minimisation','Accuracy','Storage Limitation','Integrity & Confidentiality','Accountability'];
+const PSS=['Lawful.','Purpose','Minimis.','Accuracy','Storage','Integrity','Account.'];
+const PM=['Does the policy state the legal basis for processing? Is language accessible?','Is data only collected for specified, explicit, and legitimate purposes?','Is only strictly necessary data collected? Are practices proportionate?','Can users correct inaccurate data? Are accuracy checks mentioned?','Are retention periods specified per category? Is deletion policy clear?','Are security measures described? Is breach notification covered?','Is a DPO identified? Are third-party processor relationships disclosed?'];
+
+const SCORES=[{"rank":1,"name":"Google.com","category":"Search & Platforms","avg":8.6,"risk":"safe","p":[9,9,8,8,8,9,9]},{"rank":2,"name":"YouTube.com","category":"Search & Platforms","avg":7.1,"risk":"review","p":[6.5,8.5,7.5,7,6,8,6.5]},{"rank":3,"name":"Facebook.com","category":"Social Media","avg":5.9,"risk":"risk","p":[5,7,5,6,6,6,6]},{"rank":4,"name":"Instagram.com","category":"Social Media","avg":6.7,"risk":"review","p":[8,7,6,5,6,8,7]},{"rank":5,"name":"WhatsApp.com","category":"Messaging","avg":7.9,"risk":"safe","p":[8.5,8,7,6.5,8,9,8.5]},{"rank":6,"name":"Netflix.com","category":"Streaming & Music","avg":8.1,"risk":"safe","p":[8.5,8,7,8.5,7.5,8.5,9]},{"rank":8,"name":"TikTok.com","category":"Social Media","avg":6.2,"risk":"review","p":[5.5,6,6.5,7,6,7,5.5]},{"rank":9,"name":"LinkedIn.com","category":"Search & Platforms","avg":7.0,"risk":"review","p":[6.5,8,7,7,6.5,8,6]},{"rank":10,"name":"Spotify.com","category":"Streaming & Music","avg":7.1,"risk":"review","p":[7.5,8,6.5,7,7,8,6]},{"rank":11,"name":"Zalando.com","category":"E-commerce & Retail","avg":7.7,"risk":"safe","p":[8,8,7,6,8,8,9]},{"rank":12,"name":"Booking.com","category":"Travel","avg":7.9,"risk":"safe","p":[8.5,9,7,8,6.5,7.5,9]},{"rank":13,"name":"Revolut.com","category":"Finance & Payments","avg":7.9,"risk":"safe","p":[8.5,8,7.5,7,8,8.5,8]},{"rank":14,"name":"Skyscanner.com","category":"Travel","avg":7.1,"risk":"review","p":[7,7.5,6.5,8,7,8,6]},{"rank":15,"name":"BBC.com","category":"News & Media","avg":7.9,"risk":"safe","p":[9,8.5,8,6.5,7.5,7,9]},{"rank":16,"name":"Airbnb.com","category":"Travel","avg":6.9,"risk":"review","p":[7,6.5,7.5,6,6,8,7.5]},{"rank":17,"name":"Discord.com","category":"Messaging","avg":7.4,"risk":"review","p":[7.5,7,6.5,8,6,8.5,8]},{"rank":18,"name":"Twitch.tv","category":"Streaming & Music","avg":5.1,"risk":"risk","p":[7.5,2,7,3,6.5,4,5.5]},{"rank":19,"name":"Steam","category":"Gaming","avg":7.4,"risk":"review","p":[8,8,7,6,6,8,9]},{"rank":20,"name":"Reddit.com","category":"Social Media","avg":3.0,"risk":"risk","p":[2,4,null,null,null,null,null]},{"rank":21,"name":"PayPal.com","category":"Finance & Payments","avg":8.4,"risk":"safe","p":[10,10,9,9,7,8,6]},{"rank":22,"name":"Tinder.com","category":"Dating","avg":5.5,"risk":"risk","p":[5,6,null,null,null,null,null]},{"rank":23,"name":"N26.com","category":"Finance & Payments","avg":8.6,"risk":"safe","p":[10,10,9,8,8,7,8]},{"rank":24,"name":"Uber.com","category":"Food & Mobility","avg":3.0,"risk":"risk","p":[2,3,4,null,null,null,null]},{"rank":25,"name":"H&M.com","category":"E-commerce & Retail","avg":8.3,"risk":"safe","p":[9,9,8,7,8,8,9]},{"rank":26,"name":"Zara.com","category":"E-commerce & Retail","avg":4.5,"risk":"risk","p":[2,3,6,7,null,null,null]},{"rank":27,"name":"Sephora.com","category":"E-commerce & Retail","avg":6.5,"risk":"review","p":[6,7,null,null,null,null,null]},{"rank":28,"name":"Deliveroo.co.uk","category":"Food & Mobility","avg":7.9,"risk":"safe","p":[8,9,7,8,8,9,6.5]},{"rank":29,"name":"Glovo.com","category":"Food & Mobility","avg":7.9,"risk":"safe","p":[10,7.5,8,7,6.5,8,8.5]},{"rank":30,"name":"BlaBlaCar.com","category":"Travel","avg":7.4,"risk":"review","p":[9,9,8,6,9,5,6]},{"rank":31,"name":"Twitter/X.com","category":"Social Media","avg":7.1,"risk":"review","p":[8,9,7,5,6,7,8]},{"rank":32,"name":"Snapchat.com","category":"Social Media","avg":7.3,"risk":"review","p":[8,7,6,7,8,8,7]},{"rank":33,"name":"Telegram.org","category":"Messaging","avg":6.6,"risk":"review","p":[10,6,6.5,7,5,6,6]},{"rank":34,"name":"Signal.org","category":"Messaging","avg":8.4,"risk":"safe","p":[8,7,10,8,10,6,10]},{"rank":35,"name":"ASOS.com","category":"E-commerce & Retail","avg":7.7,"risk":"safe","p":[8.5,8,7,6.5,7,8,9]},{"rank":36,"name":"Shein.com","category":"E-commerce & Retail","avg":7.2,"risk":"review","p":[8,8,6.5,7,7,8,6]},{"rank":37,"name":"About You","category":"E-commerce & Retail","avg":8.1,"risk":"safe","p":[10,9,8,6,7.5,7,9]},{"rank":38,"name":"Vinted.com","category":"E-commerce & Retail","avg":7.5,"risk":"safe","p":[10,7.5,8,6,7,6.5,7.5]},{"rank":39,"name":"Douglas.de","category":"E-commerce & Retail","avg":7.0,"risk":"review","p":[7.5,7,6,7,6,7,8.5]},{"rank":40,"name":"Notino.com","category":"E-commerce & Retail","avg":7.7,"risk":"safe","p":[8,9,7,6,9,8,7]},{"rank":42,"name":"Epic Games","category":"Gaming","avg":7.6,"risk":"safe","p":[8,8,7,6.5,6,9,9]},{"rank":43,"name":"PlayStation Store","category":"Gaming","avg":7.1,"risk":"review","p":[10,7.5,7,6,6.5,6,7]},{"rank":44,"name":"Xbox.com","category":"Gaming","avg":8.2,"risk":"safe","p":[10,9,8,7.5,7,7,9]},{"rank":45,"name":"Nintendo.com","category":"Gaming","avg":4.5,"risk":"risk","p":[2,3,4,5,6,7,null]},{"rank":46,"name":"Amazon Prime Video","category":"Streaming & Music","avg":7.9,"risk":"safe","p":[10,7.9,8.5,8,7,7,7]},{"rank":47,"name":"Disney+","category":"Streaming & Music","avg":7.9,"risk":"safe","p":[10,8.5,8,7,7,8,7]},{"rank":48,"name":"Apple TV+","category":"Streaming & Music","avg":8.9,"risk":"safe","p":[10,9,9,9,8,8,9]},{"rank":49,"name":"Apple Music","category":"Streaming & Music","avg":9.1,"risk":"safe","p":[9.1,null,null,null,null,null,null]},{"rank":50,"name":"YouTube Music","category":"Streaming & Music","avg":6.6,"risk":"review","p":[10,6.5,6,6,5.5,6,6.5]},{"rank":51,"name":"Deezer.com","category":"Streaming & Music","avg":10.0,"risk":"safe","p":[10,null,null,null,null,null,null]},{"rank":52,"name":"SoundCloud.com","category":"Streaming & Music","avg":6.7,"risk":"review","p":[8,7,6,6,5,7,8]},{"rank":53,"name":"Wise.com","category":"Finance & Payments","avg":8.1,"risk":"safe","p":[8.5,8,7,8,7.5,9,9]},{"rank":54,"name":"Klarna.com","category":"Finance & Payments","avg":10.0,"risk":"safe","p":[10,null,null,null,null,null,null]},{"rank":55,"name":"Stripe.com","category":"Finance & Payments","avg":8.7,"risk":"safe","p":[10,10,9,8.5,8,7,8.5]},{"rank":56,"name":"Google Workspace","category":"Productivity","avg":8.4,"risk":"safe","p":[9,8.5,7,8,8.5,9,8.5]},{"rank":57,"name":"Microsoft 365","category":"Productivity","avg":7.8,"risk":"safe","p":[10,8,8,7,6.5,6,9]},{"rank":58,"name":"Slack.com","category":"Productivity","avg":7.7,"risk":"safe","p":[8,8,7,6.5,7,9,8.5]},{"rank":59,"name":"Notion.com","category":"Productivity","avg":7.9,"risk":"safe","p":[10,8,7,6,7,8,9]},{"rank":60,"name":"Trello.com","category":"Productivity","avg":8.1,"risk":"safe","p":[8.1,null,null,null,null,null,null]},{"rank":61,"name":"Asana.com","category":"Productivity","avg":10.0,"risk":"safe","p":[10,null,null,null,null,null,null]},{"rank":62,"name":"Apple Pay","category":"Finance & Payments","avg":8.9,"risk":"safe","p":[10,9,8.5,9,8,8.5,9.5]},{"rank":63,"name":"Google Pay","category":"Finance & Payments","avg":7.6,"risk":"safe","p":[10,10,7.5,9,8,4,5]},{"rank":64,"name":"Uber Eats","category":"Food & Mobility","avg":8.9,"risk":"safe","p":[9,9,8,8,9,9,10]},{"rank":65,"name":"Just Eat","category":"Food & Mobility","avg":7.5,"risk":"safe","p":[8,9,7,6,6.5,8,8]},{"rank":66,"name":"Wolt.com","category":"Food & Mobility","avg":8.2,"risk":"safe","p":[9,8.5,8,7.5,8.5,7,9]},{"rank":67,"name":"Foodpanda","category":"Food & Mobility","avg":7.0,"risk":"review","p":[8,7,7,7,6,7,7]},{"rank":68,"name":"Bumble.com","category":"Dating","avg":8.7,"risk":"safe","p":[10,9,9,9,7.5,8.5,8]},{"rank":69,"name":"Hinge","category":"Dating","avg":7.4,"risk":"review","p":[8,8,7,5,7,9,8]},{"rank":70,"name":"Badoo.com","category":"Dating","avg":7.8,"risk":"safe","p":[10,10,8,7,6.5,6,7]},{"rank":71,"name":"Bolt.eu","category":"Food & Mobility","avg":8.7,"risk":"safe","p":[10,10,9,9,8,7,8]},{"rank":72,"name":"Expedia.com","category":"Travel","avg":6.8,"risk":"review","p":[7.5,7,6,7.5,6.5,7,6]},{"rank":73,"name":"Ryanair.com","category":"Travel","avg":7.6,"risk":"safe","p":[8,7,6,8,7,9,8]},{"rank":74,"name":"EasyJet.com","category":"Travel","avg":9.1,"risk":"safe","p":[10,10,9,9,8,8.5,9]},{"rank":75,"name":"Wikipedia.org","category":"News & Media","avg":6.9,"risk":"review","p":[8,7,6.5,5.5,7,8,6]},{"rank":76,"name":"The Guardian","category":"News & Media","avg":8.1,"risk":"safe","p":[9,8,7.5,8,8,8.5,8]},{"rank":77,"name":"Euronews.com","category":"News & Media","avg":7.7,"risk":"safe","p":[10,8,7.5,7,6.5,8,7]},{"rank":78,"name":"Reuters.com","category":"News & Media","avg":8.1,"risk":"safe","p":[10,9,8.5,8,6.5,7.5,7.5]},{"rank":79,"name":"Coursera.org","category":"Education","avg":7.9,"risk":"safe","p":[9,8.5,8,6.5,7,8.5,7.5]},{"rank":80,"name":"Udemy.com","category":"Education","avg":4.0,"risk":"risk","p":[2,6,null,null,null,null,null]},{"rank":81,"name":"Khan Academy","category":"Education","avg":8.3,"risk":"safe","p":[9,9,8.5,7,8,8.5,8]},{"rank":82,"name":"edX.org","category":"Education","avg":7.7,"risk":"safe","p":[10,8,7.5,7,6,7,8.5]},{"rank":83,"name":"FutureLearn.com","category":"Education","avg":6.4,"risk":"review","p":[7.5,6,7,6,5,7,6]},{"rank":84,"name":"Duolingo.com","category":"Education","avg":6.4,"risk":"review","p":[7,6.5,6,6,5.5,7,7]},{"rank":85,"name":"Strava.com","category":"Health & Fitness","avg":6.0,"risk":"review","p":[6,null,null,null,null,null,null]},{"rank":86,"name":"MyFitnessPal.com","category":"Health & Fitness","avg":7.4,"risk":"review","p":[10,7.5,8,7,6.5,6.5,6]},{"rank":87,"name":"Headspace.com","category":"Health & Fitness","avg":7.9,"risk":"safe","p":[10,8,8,7,6,7,9]},{"rank":88,"name":"Calm.com","category":"Health & Fitness","avg":7.4,"risk":"review","p":[10,8,7,7,6.5,7,6.5]},{"rank":89,"name":"YAZIO.com","category":"Health & Fitness","avg":3.7,"risk":"risk","p":[2,4,5,null,null,null,null]},{"rank":90,"name":"Allegro.pl","category":"E-commerce & Retail","avg":8.0,"risk":"safe","p":[9,8,8,7,8,7,9]},{"rank":91,"name":"GetYourGuide.com","category":"Travel","avg":8.4,"risk":"safe","p":[10,9,9,8,7,8,8]},{"rank":92,"name":"MeisterTask.com","category":"Productivity","avg":8.6,"risk":"safe","p":[10,9,9,8.5,7,8.5,8]},{"rank":93,"name":"8fit.com","category":"Health & Fitness","avg":5.0,"risk":"risk","p":[2,5,6,7,null,null,null]},{"rank":94,"name":"Wire.com","category":"Messaging","avg":8.7,"risk":"safe","p":[9,9,8,7,8,10,10]},{"rank":95,"name":"Riot Games","category":"Gaming","avg":7.4,"risk":"review","p":[7,8,6,7,6.5,8.5,9]},{"rank":96,"name":"GOG.com","category":"Gaming","avg":8.2,"risk":"safe","p":[10,9,8,8,6.5,8,8]},{"rank":97,"name":"World of Tanks","category":"Gaming","avg":null,"risk":"unknown","p":[null,null,null,null,null,null,null]},{"rank":98,"name":"Origin (EA)","category":"Gaming","avg":4.4,"risk":"risk","p":[2,3,4,6,7,null,null]},{"rank":99,"name":"Ubisoft Connect","category":"Gaming","avg":8.6,"risk":"safe","p":[10,9,9,8,7,8,9]},{"rank":100,"name":"Techland Games","category":"Gaming","avg":8.3,"risk":"safe","p":[9,9,8,7,8,8,9]}];
+
+const FINES={"Facebook.com":[{"amount":1200000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2023,"article":"Art. 46","summary":"Unlawful transfer of EU user data to the United States without adequate safeguards."},{"amount":265000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2022,"article":"Art. 33, 34","summary":"Data scraping breach notification failures. Over 533 million users' data exposed."},{"amount":17000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2022,"article":"Art. 5, 24, 25, 32","summary":"Multiple data breaches between June 2018 and December 2019."}],"Instagram.com":[{"amount":405000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2022,"article":"Art. 5, 6, 9, 12, 13","summary":"Processing of children's personal data, including public display of phone numbers and email addresses of minors."},{"amount":390000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2023,"article":"Art. 6, 12, 13","summary":"Unlawful use of 'legitimate interests' as legal basis for behavioural advertising."}],"TikTok.com":[{"amount":530000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2025,"article":"Art. 44, 46","summary":"Unlawful transfer of European user data to China. Failure to meet transparency requirements."},{"amount":345000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2023,"article":"Art. 5, 6, 12, 13, 24, 25, 31","summary":"Failure to protect children's data. Default public settings for minors, insufficient age verification."}],"LinkedIn.com":[{"amount":310000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2024,"article":"Art. 5, 6, 13","summary":"Unlawful processing for behavioural advertising. Failure to provide transparent information about legal bases."}],"Google.com":[{"amount":150000000,"currency":"EUR","dpa":"CNIL","country":"France","year":2022,"article":"Art. 7, ePrivacy","summary":"Making it harder to refuse cookies than to accept them. Dark patterns in consent interface."},{"amount":90000000,"currency":"EUR","dpa":"CNIL","country":"France","year":2022,"article":"Art. 7, ePrivacy","summary":"YouTube cookie consent failures — refusing cookies made more difficult than accepting."},{"amount":50000000,"currency":"EUR","dpa":"CNIL","country":"France","year":2019,"article":"Art. 5, 6, 13","summary":"Lack of transparent information and valid consent for personalised advertising on Android."}],"YouTube.com":[{"amount":90000000,"currency":"EUR","dpa":"CNIL","country":"France","year":2022,"article":"Art. 7, ePrivacy","summary":"Cookie consent failures — refusing cookies made more difficult than accepting."}],"WhatsApp.com":[{"amount":225000000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2021,"article":"Art. 12, 13, 14","summary":"Lack of transparency about data processing including data sharing with Facebook."}],"Twitter/X.com":[{"amount":450000,"currency":"EUR","dpa":"Irish DPC","country":"Ireland","year":2022,"article":"Art. 33","summary":"Failure to notify the DPA of a personal data breach within 72 hours."}],"Uber.com":[{"amount":290000000,"currency":"EUR","dpa":"AP","country":"Netherlands","year":2024,"article":"Art. 44, 46","summary":"Unlawful transfer of European drivers' personal data to the United States."},{"amount":600000,"currency":"EUR","dpa":"AP","country":"Netherlands","year":2018,"article":"Art. 33","summary":"Failure to report a 57 million record data breach within 72 hours."}],"Spotify.com":[{"amount":5000000,"currency":"EUR","dpa":"IMY","country":"Sweden","year":2023,"article":"Art. 15","summary":"Failure to provide users with clear information when exercising right of access."}],"Airbnb.com":[{"amount":720000,"currency":"EUR","dpa":"Garante","country":"Italy","year":2021,"article":"Art. 5, 6, 13","summary":"Insufficient transparency about data processing for advertising and third-party sharing."}],"Booking.com":[{"amount":475000,"currency":"EUR","dpa":"AP","country":"Netherlands","year":2020,"article":"Art. 33","summary":"Failure to report a personal data breach within 72 hours."}],"Deliveroo.co.uk":[{"amount":50000,"currency":"EUR","dpa":"CNIL","country":"France","year":2021,"article":"Art. 13, 14","summary":"Insufficient information provided to delivery workers about personal data processing."}],"Snapchat.com":[{"amount":8500000,"currency":"GBP","dpa":"ICO","country":"UK","year":2025,"article":"Art. 35, 36","summary":"Failure to adequately assess privacy risks of 'My AI' feature to children."}],"Discord.com":[{"amount":800000,"currency":"EUR","dpa":"CNIL","country":"France","year":2023,"article":"Art. 5, 13, 17, 32","summary":"Retention of data beyond necessary periods. Inadequate information about retention. Security failures."}],"Bumble.com":[{"amount":1400000,"currency":"EUR","dpa":"HmbBfDI","country":"Germany","year":2023,"article":"Art. 5, 25","summary":"Excessive data collection and insufficient data minimisation in profile creation."}],"Badoo.com":[{"amount":1400000,"currency":"EUR","dpa":"HmbBfDI","country":"Germany","year":2023,"article":"Art. 5, 25","summary":"Excessive data collection — same enforcement action as Bumble (same parent company)."}]};
+
+// Build lookup
+const FINED_NAMES=new Set(Object.keys(FINES));
+const CATS=[...new Set(SCORES.map(d=>d.category))].sort();
+let openId=null,activeTab='index';
+
+function fmt(n,cur){
+  if(n===0)return'Regulatory action';
+  const s=cur==='GBP'?'£':'€';
+  if(n>=1e9)return s+(n/1e9).toFixed(1)+'B';
+  if(n>=1e6)return s+(n/1e6).toFixed(0)+'M';
+  if(n>=1e3)return s+(n/1e3).toFixed(0)+'K';
+  return s+n.toLocaleString();
+}
+function bc(v){if(v===null)return'#9CA3AF';if(v>=7.5)return'#22C55E';if(v>=6)return'#F59E0B';return'#EF4444';}
+function sc(v){if(v===null)return'var(--slate)';if(v>=7.5)return'var(--safe-c)';if(v>=6)return'var(--rev-c)';return'var(--risk-c)';}
+function rl(r){return{safe:'Safe',review:'Review',risk:'High risk',unknown:'N/A'}[r]||'N/A';}
+
+function buildStats(){
+  const safe=SCORES.filter(d=>d.risk==='safe').length;
+  const rev=SCORES.filter(d=>d.risk==='review').length;
+  const risk=SCORES.filter(d=>d.risk==='risk').length;
+  const avgs=SCORES.filter(d=>d.avg!==null).map(d=>d.avg);
+  const mean=(avgs.reduce((a,b)=>a+b,0)/avgs.length).toFixed(1);
+  const totalFines=Object.values(FINES).flat().reduce((s,f)=>s+f.amount,0);
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><div class="stat-n">${SCORES.length}</div><div class="stat-l">Analysed</div></div>
+    <div class="stat"><div class="stat-n">${mean}</div><div class="stat-l">Avg /10</div></div>
+    <div class="stat safe-s"><div class="stat-n" style="color:#86EFAC">${safe}</div><div class="stat-l">Safe</div></div>
+    <div class="stat rev-s"><div class="stat-n" style="color:#FCD34D">${rev}</div><div class="stat-l">Review</div></div>
+    <div class="stat risk-s"><div class="stat-n" style="color:#FCA5A5">${risk}</div><div class="stat-l">High risk</div></div>
+    <div class="stat fine-s"><div class="stat-n" style="color:#FED7AA">${fmt(totalFines,'EUR')}</div><div class="stat-l">Documented fines</div></div>`;
+  document.getElementById('fine-count').textContent=Object.keys(FINES).length;
+}
+
+function buildSectors(){
+  const s=document.getElementById('f-sec');
+  CATS.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;s.appendChild(o);});
+}
+
+function buildMethodTable(){
+  const tb=document.getElementById('method-table');
+  if(!tb)return;
+  tb.innerHTML=PS.map((p,i)=>`<tr style="border-bottom:1px solid var(--border)">
+    <td style="padding:10px 12px;font-weight:500;font-size:13px;background:${i%2?'#fff':'#fafafa'}">${p}</td>
+    <td style="padding:10px 12px;font-size:12px;color:var(--slate);background:${i%2?'#fff':'#fafafa'}">${PM[i]}</td>
+  </tr>`).join('');
+}
+
+function setTab(t){
+  activeTab=t;
+  ['index','enforcement','methodology'].forEach(id=>{
+    document.getElementById('view-'+id).style.display=id===t?'block':'none';
+    document.getElementById('tab-'+id).classList.toggle('active',id===t);
+  });
+  if(t==='methodology')buildMethodTable();
+  if(t==='enforcement')buildEnforcement();
+}
+
+function buildEnforcement(){
+  const el=document.getElementById('enf-list');
+  const items=Object.entries(FINES).map(([name,fines])=>{
+    const company=SCORES.find(s=>s.name===name);
+    const total=fines.reduce((s,f)=>s+f.amount,0);
+    const fineRows=fines.map(f=>`
+      <div class="enf-fine">
+        <div class="enf-fine-top">
+          <span class="enf-fine-amt">${fmt(f.amount,f.currency)}</span>
+          <span class="enf-fine-meta">${f.dpa} · ${f.country} · ${f.year} · ${f.article}</span>
+        </div>
+        <div class="enf-fine-sum">${f.summary}</div>
+      </div>`).join('');
+    return`<div class="enf-card">
+      <div class="enf-header">
+        <div>
+          <div class="enf-company">${name}</div>
+          <div class="enf-cat">${company?company.category:''} ${company?`· Policy score: <strong>${company.avg||'N/A'}/10</strong>`:''}</div>
+        </div>
+        <div class="enf-total">
+          <div class="enf-total-n">${fmt(total,'EUR')}</div>
+          <div class="enf-total-l">total fines</div>
+        </div>
+      </div>
+      <div class="enf-fines">${fineRows}</div>
+    </div>`;
+  }).sort((a,b)=>{
+    const ta=Object.values(FINES)[Object.keys(FINES).indexOf(a.match(/class="enf-company">([^<]+)/)?.[1]||'')]?.reduce((s,f)=>s+f.amount,0)||0;
+    return b.localeCompare?0:0;
+  });
+  // Sort by total fine descending
+  const sorted=Object.entries(FINES)
+    .sort((a,b)=>b[1].reduce((s,f)=>s+f.amount,0)-a[1].reduce((s,f)=>s+f.amount,0));
+  el.innerHTML=sorted.map(([name,fines])=>{
+    const company=SCORES.find(s=>s.name===name);
+    const total=fines.reduce((s,f)=>s+f.amount,0);
+    const fineRows=fines.map(f=>`
+      <div class="enf-fine">
+        <div class="enf-fine-top">
+          <span class="enf-fine-amt">${fmt(f.amount,f.currency)}</span>
+          <span class="enf-fine-meta">${f.dpa} · ${f.country} · ${f.year} · ${f.article}</span>
+        </div>
+        <div class="enf-fine-sum">${f.summary}</div>
+        <a class="enf-fine-ref" href="https://www.enforcementtracker.com" target="_blank">Source: CMS Enforcement Tracker ↗</a>
+      </div>`).join('');
+    return`<div class="enf-card">
+      <div class="enf-header">
+        <div>
+          <div class="enf-company">${name}</div>
+          <div class="enf-cat">${company?company.category:''} ${company?`· Policy score: <strong>${company.avg!==null?company.avg+'/10':'N/A'}</strong>`:''}</div>
+        </div>
+        <div class="enf-total">
+          <div class="enf-total-n">${fmt(total,'EUR')}</div>
+          <div class="enf-total-l">${fines.length} fine${fines.length>1?'s':''} recorded</div>
+        </div>
+      </div>
+      <div class="enf-fines">${fineRows}</div>
+    </div>`;
+  }).join('');
+}
+
+function getFiltered(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const sec=document.getElementById('f-sec').value;
+  const risk=document.getElementById('f-risk').value;
+  const fine=document.getElementById('f-fine').value;
+  const sort=document.getElementById('f-sort').value;
+  let d=[...SCORES];
+  if(q)d=d.filter(r=>r.name.toLowerCase().includes(q)||r.category.toLowerCase().includes(q));
+  if(sec)d=d.filter(r=>r.category===sec);
+  if(risk)d=d.filter(r=>r.risk===risk);
+  if(fine==='fined')d=d.filter(r=>FINED_NAMES.has(r.name));
+  if(sort==='sd')d.sort((a,b)=>(b.avg||0)-(a.avg||0));
+  else if(sort==='sa')d.sort((a,b)=>(a.avg||0)-(b.avg||0));
+  else if(sort==='name')d.sort((a,b)=>a.name.localeCompare(b.name));
+  else d.sort((a,b)=>a.rank-b.rank);
+  return d;
+}
+
+function fineTag(name){
+  if(!FINED_NAMES.has(name))return'';
+  const total=FINES[name].reduce((s,f)=>s+f.amount,0);
+  const count=FINES[name].length;
+  return`<div class="fine-badge">⚖ ${count} fine${count>1?'s':''} · ${fmt(total,'EUR')}</div>`;
+}
+
+function fineDetail(name){
+  if(!FINED_NAMES.has(name))return'';
+  const rows=FINES[name].map(f=>`
+    <div class="fine-item">
+      <div class="fine-top">
+        <span class="fine-amount">${fmt(f.amount,f.currency)}</span>
+        <span class="fine-meta">${f.dpa} · ${f.country} · ${f.year} · ${f.article}</span>
+      </div>
+      <div class="fine-summary">${f.summary}</div>
+      <a class="fine-link" href="https://www.enforcementtracker.com" target="_blank">Source: CMS Enforcement Tracker ↗</a>
+    </div>`).join('');
+  return`<div class="exp-section">
+    <div class="exp-title">DPA enforcement history</div>
+    <div class="fine-list">${rows}</div>
+  </div>`;
+}
+
+function miniBar(p){
+  return PSS.map((l,i)=>{
+    const v=p[i],pct=v!==null?Math.round(v/10*100):0;
+    return`<div class="bar-row"><span class="bar-lbl">${l}</span><div class="bar-trk"><div class="bar-fill" style="width:${pct}%;background:${bc(v)}"></div></div><span class="bar-v">${v!==null?v:'-'}</span></div>`;
+  }).join('');
+}
+
+function detailGrid(p){
+  return`<div class="exp-grid">${PS.map((l,i)=>{
+    const v=p[i],pct=v!==null?Math.round(v/10*100):0;
+    return`<div class="exp-item"><div class="exp-p">${l}</div><div class="exp-bar-trk"><div class="exp-bar-fill" style="width:${pct}%;background:${bc(v)}"></div></div><div class="exp-val" style="color:${bc(v)}">${v!==null?v+' /10':'—'}</div></div>`;
+  }).join('')}</div>`;
+}
+
+function toggle(id){
+  const el=document.getElementById('ex'+id);
+  if(!el)return;
+  if(openId===id){el.classList.remove('open');openId=null;}
+  else{if(openId)document.getElementById('ex'+openId)?.classList.remove('open');el.classList.add('open');openId=id;}
+}
+
+function cardHtml(d){
+  const id='c'+d.rank;
+  const hasFine=FINED_NAMES.has(d.name);
+  const avgD=d.avg!==null?d.avg.toFixed(1):'N/A';
+  return`<div class="card${hasFine?' has-fine':''}" onclick="toggle('${id}')">
+    <div class="card-top">
+      <div style="flex:1;min-width:0">
+        <div class="c-rank">#${d.rank}</div>
+        <div class="c-name">${d.name}</div>
+        <div class="c-cat">${d.category}</div>
+      </div>
+      <div class="c-score">
+        <div class="score-n" style="color:${sc(d.avg)}">${avgD}</div>
+        <div class="score-d">/10</div>
+        <div class="badge ${d.risk}">${rl(d.risk)}</div>
+        ${fineTag(d.name)}
+      </div>
+    </div>
+    <div class="card-bars">${miniBar(d.p)}</div>
+    <div class="expand" id="ex${id}">
+      <div class="exp-section">
+        <div class="exp-title">7 GDPR principles</div>
+        ${detailGrid(d.p)}
+      </div>
+      ${fineDetail(d.name)}
+    </div>
+  </div>`;
+}
+
+function render(){
+  const filtered=getFiltered();
+  const mainEl=document.getElementById('main');
+  const noRes=document.getElementById('no-res');
+  document.getElementById('cnt').textContent=filtered.length+' website'+(filtered.length===1?'':'s');
+  if(filtered.length===0){mainEl.innerHTML='';noRes.style.display='block';return;}
+  noRes.style.display='none';
+  const sec=document.getElementById('f-sec').value;
+  const sort=document.getElementById('f-sort').value;
+  if(sec||sort!=='rank'){
+    mainEl.innerHTML=`<div class="grid">${filtered.map(cardHtml).join('')}</div>`;
+    return;
+  }
+  const byC={};
+  filtered.forEach(d=>{if(!byC[d.category])byC[d.category]=[];byC[d.category].push(d);});
+  let html='';
+  CATS.filter(c=>byC[c]).forEach(cat=>{
+    const items=byC[cat];
+    const valid=items.filter(i=>i.avg!==null);
+    const avg=valid.length?(valid.reduce((a,b)=>a+(b.avg||0),0)/valid.length).toFixed(1):'—';
+    html+=`<div class="sec-hdr"><span class="sec-name">${cat}</span><span class="sec-avg">avg ${avg} /10</span><div class="sec-line"></div></div>`;
+    html+=`<div class="grid">${items.map(cardHtml).join('')}</div>`;
+  });
+  mainEl.innerHTML=html;
+}
+
+['q','f-sec','f-risk','f-fine','f-sort'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+['f-sec','f-risk','f-fine','f-sort'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+
+buildStats();buildSectors();render();
+</script>
+</body>
+</html>
