@@ -35,33 +35,6 @@ guardatum-index/
 
 ---
 
-## Deploying to GitHub Pages
-
-### First time setup (5 minutes)
-
-1. **Create a new GitHub repository** called `privacy-index` (or any name you prefer)
-
-2. **Upload these files** via GitHub's web interface, or clone and push:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/privacy-index.git
-   cd privacy-index
-   # Copy all files from this folder into the cloned repo
-   git add .
-   git commit -m "Initial release: Guardatum Privacy Index Edition 1"
-   git push
-   ```
-
-3. **Enable GitHub Pages:**
-   - Go to your repository → **Settings** → **Pages**
-   - Under "Source", select **Deploy from a branch**
-   - Choose **main** branch, **/ (root)** folder
-   - Click **Save**
-
-4. **Your index is live** at `https://YOUR_USERNAME.github.io/privacy-index`
-
-That's it. No server, no build step, no database.
-
----
 
 ## Updating the data
 
