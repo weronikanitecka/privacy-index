@@ -4,7 +4,7 @@
 
 An AI-powered, enforcement-informed privacy policy risk index for Europe's most-visited websites — scored against the 7 core GDPR principles and cross-referenced with public DPA enforcement records.
 
-🌐 **Live index:** [guardatum.github.io/privacy-index](https://guardatum.github.io/privacy-index)
+🌐 **Live index:** [guardatum.github.io/privacy-index](https://weronikanitecka.github.io/privacy-index/)
 
 ---
 
