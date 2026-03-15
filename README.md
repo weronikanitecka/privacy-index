@@ -4,7 +4,7 @@
 
 An AI-powered, enforcement-informed privacy policy risk index for Europe's most-visited websites — scored against the 7 core GDPR principles and cross-referenced with public DPA enforcement records.
 
-🌐 **Live index:** [guardatum.github.io/privacy-index](https://guardatum.github.io/privacy-index) *(update this URL after deployment)*
+🌐 **Live index:** [guardatum.github.io/privacy-index](https://guardatum.github.io/privacy-index)
 
 ---
 
@@ -24,12 +24,12 @@ The Guardatum Privacy Index scores privacy policies as written documents against
 
 ```
 guardatum-index/
-├── index.html              # The full interactive index (single file, no dependencies)
+├── index.html              # The full interactive index
 ├── data/
 │   ├── privacy_scores.json # GDPR principle scores for all 98 websites
 │   └── dpa_fines.json      # Documented DPA fines from enforcementtracker.com
 ├── scripts/
-│   └── update_fines.py     # Script to refresh DPA data (see below)
+│   └── update_fines.py     
 └── README.md
 ```
 
@@ -86,15 +86,6 @@ The `scripts/update_fines.py` script is a placeholder for automated scraping of 
 | Guardatum AI analysis | GDPR principle scores (0–10) per policy | Quarterly |
 | CMS GDPR Enforcement Tracker (enforcementtracker.com) | Documented DPA fines across the EU | Manual quarterly refresh |
 | EDPB public register | Binding decisions and cross-border cases | Manual as needed |
-
----
-
-## Roadmap
-
-- **Edition 2 (Q2 2025):** Expand to 250 websites. Add France-specific analysis.
-- **Edition 3 (Q3 2025):** Integrate RAG layer over DPA enforcement databases for automated fine detection.
-- **Edition 4 (Q4 2025):** Live URL scoring — enter any URL and get a real-time risk score.
-- **2026:** Partner API for VPN/browser integrations.
 
 ---
 
