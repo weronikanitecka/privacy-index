@@ -1,4 +1,4 @@
-# Guardatum Privacy Policy Risk Index
+# Guardatum Privacy Index
 
 **The ethical eye on your digital life.**
 
