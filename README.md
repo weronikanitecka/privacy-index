@@ -35,50 +35,6 @@ guardatum-index/
 
 ---
 
-
-## Updating the data
-
-### Quarterly score refresh
-Edit `data/privacy_scores.json` directly — each entry has this structure:
-```json
-{
-  "rank": 1,
-  "name": "Google.com",
-  "category": "Search & Platforms",
-  "avg": 8.6,
-  "risk": "safe",
-  "principles": [9.0, 9.0, 8.0, 8.0, 8.0, 9.0, 9.0]
-}
-```
-
-Risk levels: `"safe"` (≥7.5), `"review"` (6.0–7.4), `"risk"` (<6.0), `"unknown"` (not scored)
-
-### Adding new DPA fines
-Edit `data/dpa_fines.json` — each company entry is an array of fine records:
-```json
-{
-  "fines": {
-    "CompanyName.com": [
-      {
-        "amount": 1000000,
-        "currency": "EUR",
-        "dpa": "CNIL",
-        "country": "France",
-        "year": 2025,
-        "article": "Art. 6",
-        "summary": "Description of the violation.",
-        "url": "https://www.enforcementtracker.com/"
-      }
-    ]
-  }
-}
-```
-
-### Automated fine refresh (optional, future)
-The `scripts/update_fines.py` script is a placeholder for automated scraping of enforcementtracker.com. See the script for implementation notes.
-
----
-
 ## Data sources
 
 | Source | What it provides | Update frequency |
