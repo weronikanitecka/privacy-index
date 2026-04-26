@@ -47,7 +47,7 @@ guardatum-index/
 
 ## About Guardatum
 
-Guardatum is a privacy intelligence company building tools that make data rights transparent and actionable — in real time, at the moment of consent, not after your data has already been shared.
+Guardatum is a privacy intelligence NGO building tools that make data rights transparent and actionable — in real time, at the moment of consent, not after your data has already been shared.
 
 - **CEO:** Weronika Nitecka — [weronika@guardatum.org](mailto:weronika@guardatum.org)
 - **CTO:** Estera Kot, PhD
