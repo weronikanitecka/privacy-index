@@ -37,7 +37,11 @@ header{background:var(--ink);position:sticky;top:0;z-index:100;border-bottom:2px
 .hdr-link:hover{color:var(--burg)}
 
 /* HERO */
-.hero{background:var(--burg);padding:40px 20px 32px;overflow:hidden;position:relative}
+.hero {
+  background: var(--burg); /* Uses #6B0F38 */
+  padding: 40px 20px 32px;
+  border-bottom: 1px solid var(--ink);
+}
 .hero::after{content:'';position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:360px;height:360px;border-radius:50%;border:1px solid rgba(247,243,240,.05);pointer-events:none}
 .hero-inner{max-width:1280px;margin:0 auto;position:relative}
 .hero-eye{opacity:.15;position:absolute;right:0;top:-20px}
@@ -45,13 +49,20 @@ header{background:var(--ink);position:sticky;top:0;z-index:100;border-bottom:2px
 .hero h1{font-size:clamp(26px,4vw,40px);font-weight:300;color:var(--warm);line-height:1.2;margin-bottom:10px;max-width:600px}
 .hero-sub{font-size:14px;color:rgba(247,243,240,.6);max-width:520px;line-height:1.7;margin-bottom:24px}
 .stats{display:flex;flex-wrap:wrap;gap:2px}
-.stat{background:rgba(247,243,240,.07);border:1px solid rgba(247,243,240,.1);padding:12px 20px;min-width:100px}
+.stat {
+  background: rgba(255, 255, 255, 0.1); /* Subtle white transparency */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+}
 .stat-n{font-size:26px;font-weight:200;color:var(--warm);line-height:1;font-family:'DM Mono',monospace}
 .stat-l{font-size:9px;letter-spacing:2px;color:rgba(247,243,240,.4);text-transform:uppercase;margin-top:3px}
 .stat.safe-s{border-left:3px solid #86EFAC}.stat.rev-s{border-left:3px solid #FCD34D}.stat.risk-s{border-left:3px solid #FCA5A5}.stat.fine-s{border-left:3px solid #FED7AA}
 
 /* TABS */
-.tabs-wrap{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:90}
+.tabs-wrap {
+  background: var(--warm); /* Pure White */
+  border-bottom: 1px solid var(--border); /* Black border */
+}
 .tabs-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:0}
 .tab{padding:14px 20px;font-size:13px;font-weight:400;color:var(--slate);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;user-select:none;white-space:nowrap}
 .tab:hover{color:var(--ink)}
@@ -63,7 +74,11 @@ header{background:var(--ink);position:sticky;top:0;z-index:100;border-bottom:2px
 .ctrl-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .search-w{position:relative;flex:1;min-width:180px}
 .search-w svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.4}
-input[type=search]{width:100%;padding:8px 10px 8px 34px;border:1px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none}
+input[type=search] {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
 input[type=search]:focus{border-color:var(--burg)}
 input[type=search]::placeholder{color:var(--slate);opacity:.5}
 select{padding:8px 28px 8px 10px;border:1px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234A5568' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
@@ -84,8 +99,13 @@ main{max-width:1280px;margin:0 auto;padding:20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
 
 /* CARD */
-.card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s}
-.card:hover{border-color:#D4A0B0}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+.card:hover {
+  border-color: var(--burg); /* Highlight burgundy on hover */
+}
 .card.has-fine{border-left:3px solid #FED7AA}
 .card-top{padding:14px 14px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .c-rank{font-size:10px;letter-spacing:2px;color:var(--slate);font-family:'DM Mono',monospace;margin-bottom:3px}
@@ -166,12 +186,7 @@ footer{background:var(--ink);padding:32px 20px;margin-top:48px}
 <header>
   <div class="hdr">
     <a class="logo" href="#">
-    <img src="logo.svg" alt="My Logo" width="200">
-        <path d="M-16 0 Q0-12 16 0" fill="none" stroke="#6B0F38" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M-16 0 Q0 12 16 0" fill="none" stroke="#6B0F38" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="0" cy="0" r="5.5" fill="none" stroke="#6B0F38" stroke-width="1.4"/>
-        <circle cx="0" cy="0" r="2.2" fill="#6B0F38"/>
-      </svg>
+      <img src="logo.svg" alt="Guardatum Logo" width="32" height="32">
       <div>
         <div class="logo-name">guardatum</div>
         <div class="logo-tag">Privacy Intelligence</div>
