@@ -20,21 +20,6 @@ The Guardatum Privacy Index scores privacy policies as written documents against
 
 ---
 
-## Repository structure
-
-```
-guardatum-index/
-├── index.html              # The full interactive index
-├── data/
-│   ├── privacy_scores.json # GDPR principle scores for all 98 websites
-│   └── dpa_fines.json      # Documented DPA fines from enforcementtracker.com
-├── scripts/
-│   └── update_fines.py     
-└── README.md
-```
-
----
-
 ## Data sources
 
 | Source | What it provides | Update frequency |
